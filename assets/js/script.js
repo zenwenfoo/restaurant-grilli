@@ -3,7 +3,7 @@
 /*PRELOAD*/
 /*loading will end after document is loaded*/
 
-const preloader = document.querySelector("[data-preaload");
+const preloader = document.querySelector("[data-preaload]");
 
 window.addEventListener("load", function () {
     preloader.classList.add("loaded");
@@ -19,7 +19,7 @@ const addEventOnElements = function(elements, eventType, callback) {
 
 /*Navbar*/
 const navbar = document.querySelector("[data-navbar]");
-const navTogglers = document.querySelectorAll("[data-nav-toggler]")
+const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const overlay = document.querySelector("[data-overlay]");
 
 const toggleNavbar = function() {
@@ -32,6 +32,7 @@ addEventOnElements(navTogglers, "click", toggleNavbar);
 
 /*Header*/
 const header = document.querySelector("[data-header]");
+const backTopBtn = document.querySelector("[data-back-top-btn]");
 
 let lastScrollPos = 0;
 
@@ -50,15 +51,17 @@ const hideHeader = function () {
 window.addEventListener("scroll", function() {
     if (window.scrollY >= 50) {
         header.classList.add("active");
+        backTopBtn.classList.add("active");
         hideHeader();
     }else {
         header.classList.remove("active");
+        backTopBtn.classList.remove("active");
     }
-})
+});
 
 /*Hero slider*/
 const heroSlider = document.querySelector("[data-hero-slider]");
-const heroSliderItems = document.querySelectorAll("[data-hero-slider-item");
+const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
 const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
 const heroSliderNextBtn = document.querySelector("[data-next-btn]");
 
@@ -88,8 +91,9 @@ const slidePrev = function() {
     if (currentSlidePos <= 0) {
         currentSlidePos = heroSliderItems.length - 1;
     } else {
-        updateSliderPos();
+        currentSlidePos--;
     }
+    updateSliderPos();
 }
 
 heroSliderPrevBtn.addEventListener("click", slidePrev);
